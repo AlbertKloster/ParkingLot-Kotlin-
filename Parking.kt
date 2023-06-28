@@ -3,10 +3,6 @@ package parking
 class Parking(capacity: Int) {
     private val spots = List(capacity) { Spot(it + 1, null) }
 
-    fun init() {
-        spots[0].car = Car("KA-01-HH-1234", "White")
-    }
-
     fun park(car: Car) {
         for (spot in spots) {
             if (spot.car == null) {
@@ -15,6 +11,7 @@ class Parking(capacity: Int) {
                 return
             }
         }
+        println("Sorry, the parking lot is full.")
     }
 
     fun leave(spotNumber: Int) {

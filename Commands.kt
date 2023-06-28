@@ -1,7 +1,7 @@
 package parking
 
 enum class Commands(val string: String) {
-    PARK("park"), LEAVE("leave");
+    PARK("park"), LEAVE("leave"), EXIT("exit");
 
     companion object {
         fun getCommand(input: String): Commands {

@@ -1,30 +1,29 @@
-# Stage 2/5: Only 2 spots
+# Stage 3/5: Expand and park
 ## Description
-At this stage, our minimalistic parking lot has two parking spots. Let's assume that <b>the first spot is occupied</b> and the second one is free.
+Two spots are not enough for a parking lot, so let's increase the number of parking spaces. We'll jump straight to 20 spaces, numbered from 1 to 20. Initially, all the spots are vacant.
 
-The parking lot should allow the user to park the car. This is implemented using the `park` command. After the user has entered this command, the registration number and the color of the car should be specified. For example, `park KA-01-HH-1234 Blue`. The registration number should not contain spaces. The color can be written in either uppercase or lowercase letters.
+When the user wants to park the car, the program should find an available parking spot with the lowest number.
 
-As the first spot is already taken, the program should allocate the second spot and print: `Blue car parked in spot 2`. The color should match what the user inputs.
+The user can write commands `park` and `leave` repeatedly and type `exit` to end the program.
 
-To pick up the car, the user should print the command `leave` and then the number of the parking spot, for example, `leave 1`. If there is no car in the given spot, the program should print an error: `There is no car in spot 1`. Otherwise, it should notify the user that the spot is now available: `Spot 1 is free`.
+If the parking lot is full and there's no room, the program should type `Sorry, the parking lot is full.`.
 
-## Examples
-The symbol `>` represents the user input. Note that it isn't part of the input.
+If there are several available spots for a car, the program should always assign the spot with the lowest number.
 
-<b>Example 1:</b>
+## Example
+The symbol `>` represents the user input. Note that it's not part of the input.
 ```
-> park KA-01-HH-1234 Blue
-Blue car parked in spot 2.
-```
+> park KA-01-HH-9999 White
+White car parked in spot 1.
+> park KA-01-HH-3672 Green
+Green car parked in spot 2.
+...
 
-<b>Example 2:</b>
-```
+> park Rs-P-N-21 Red
+Sorry, the parking lot is full.
 > leave 1
 Spot 1 is free.
-```
-
-<b>Example 3:</b>
-```
-> leave 2
-There is no car in spot 2.
+> park Rs-P-N-21 Red
+Red car parked in spot 1.
+> exit
 ```
