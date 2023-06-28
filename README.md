@@ -1,29 +1,30 @@
-# Stage 3/5: Expand and park
+# Stage 4/5: Size matters
 ## Description
-Two spots are not enough for a parking lot, so let's increase the number of parking spaces. We'll jump straight to 20 spaces, numbered from 1 to 20. Initially, all the spots are vacant.
+In real life, parking lots vary in size. At this stage, we will get better at making art imitate life. To do this, we will make our program customizable by adding a `create` command that allows the user to specify the number of spots. For example, the command `create 3` makes a parking lot with three spots. The number of spots should be positive. The program output should be the following: `Created a parking lot with 3 spots.`
 
-When the user wants to park the car, the program should find an available parking spot with the lowest number.
+Other commands like `park` or `leave` should return an error `Sorry, a parking lot has not been created.` until the user enters the `create` command. If the user calls `create` again, the previous parking state should be reset.
 
-The user can write commands `park` and `leave` repeatedly and type `exit` to end the program.
-
-If the parking lot is full and there's no room, the program should type `Sorry, the parking lot is full.`.
-
-If there are several available spots for a car, the program should always assign the spot with the lowest number.
+It is also important to keep track of which spaces are occupied by which cars. For this, add a `status` command that prints all occupied spots in ascending order. For each spot, it should print the spot number, the car’s plate registration number, and the color of the car, all separated by spaces like the example below. If there are no occupied spots, the program should print: `Parking lot is empty.`
 
 ## Example
-The symbol `>` represents the user input. Note that it's not part of the input.
+The symbol `>` represents the user input.
 ```
+> park KA-01-HH-9999 White
+Sorry, a parking lot has not been created.
+> create 3
+Created a parking lot with 3 spots.
+> status
+Parking lot is empty.
 > park KA-01-HH-9999 White
 White car parked in spot 1.
 > park KA-01-HH-3672 Green
 Green car parked in spot 2.
-...
-
 > park Rs-P-N-21 Red
-Sorry, the parking lot is full.
-> leave 1
-Spot 1 is free.
-> park Rs-P-N-21 Red
-Red car parked in spot 1.
+Red car parked in spot 3.
+> leave 2
+Spot 2 is free.
+> status
+1 KA-01-HH-9999 White
+3 Rs-P-N-21 Red
 > exit
 ```

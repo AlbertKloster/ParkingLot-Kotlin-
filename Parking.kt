@@ -1,26 +1,36 @@
 package parking
 
-class Parking(capacity: Int) {
-    private val spots = List(capacity) { Spot(it + 1, null) }
+class Parking() {
+    private var spots: List<Spot>? = null
 
-    fun park(car: Car) {
-        for (spot in spots) {
-            if (spot.car == null) {
-                spot.car = car
-                println("${car.color.first().uppercase() + car.color.substring(1).lowercase()} car parked in spot ${spot.number}.")
-                return
-            }
-        }
-        println("Sorry, the parking lot is full.")
+    fun create(capacity: Int) {
+        spots = List(capacity) { Spot(it + 1, null) }
     }
 
-    fun leave(spotNumber: Int) {
-        for (spot in spots) {
-            if (spot.number == spotNumber) {
-                spot.car ?: throw RuntimeException("There is no car in spot $spotNumber.")
-                spot.car = null
-                println("Spot ${spot.number} is free.")
+    fun park(car: Car): Spot? {
+        if (spots == null) throw RuntimeException("Sorry, a parking lot has not been created.")
+        for (spot in spots!!) {
+            if (spot.car == null) {
+                spot.car = car
+                return spot
             }
         }
+        return null
+    }
+
+    fun leave(spotNumber: Int): Car? {
+        if (spots == null) throw RuntimeException("Sorry, a parking lot has not been created.")
+        for (spot in spots!!) {
+            if (spot.number == spotNumber) {
+                val car = spot.car
+                spot.car = null
+                return car
+            }
+        }
+        return null
+    }
+
+    fun getSpots(): List<Spot>? {
+        return spots
     }
 }

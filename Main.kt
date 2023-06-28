@@ -1,15 +1,16 @@
 package parking
 
-val parking = Parking(20)
-
 fun main() {
+    val parkingService = ParkingService()
     var exit = false
     while (!exit) {
         val strings = readln().trim().split(Regex("\\s+"))
         try {
             when (Commands.getCommand(strings[0])) {
-                Commands.PARK -> park(Car(strings[1], strings[2]))
-                Commands.LEAVE -> leave(strings[1].toInt())
+                Commands.PARK -> parkingService.parkCar(Car(strings[1], strings[2]))
+                Commands.LEAVE -> parkingService.leaveSpotNumber(strings[1].toInt())
+                Commands.CREATE -> parkingService.createNewParking(strings[1].toInt())
+                Commands.STATUS -> parkingService.printStatus()
                 Commands.EXIT -> exit = true
             }
         } catch (e: RuntimeException) {
@@ -19,10 +20,4 @@ fun main() {
 
 }
 
-private fun park(car: Car) {
-    parking.park(car)
-}
 
-private fun leave(spotNumber: Int) {
-    parking.leave(spotNumber)
-}
