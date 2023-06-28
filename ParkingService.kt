@@ -33,4 +33,28 @@ class ParkingService {
         else
             println("Spot $spotNumber is free.")
     }
+
+    fun getRegByColor(color: String) {
+        val cars = parking.getAllCarsByColor(color)
+        if (cars.isNullOrEmpty())
+            println("No cars with color $color were found.")
+        else
+            println(cars.map { it?.registrationNumber }.joinToString(", "))
+    }
+
+    fun getSpotByColor(color: String) {
+        val spots = parking.getAllSpotsByColor(color)
+        if (spots.isNullOrEmpty())
+            println("No cars with color $color were found.")
+        else
+            println(spots.map { it?.number }.joinToString(", "))
+    }
+
+    fun getSpotByReg(reg: String) {
+        val spots = parking.getAllSpotsByReg(reg)
+        if (spots.isNullOrEmpty())
+            println("No cars with registration number $reg were found.")
+        else
+            println(spots.map { it?.number }.joinToString(", "))
+    }
 }

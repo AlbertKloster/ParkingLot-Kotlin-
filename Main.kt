@@ -7,11 +7,14 @@ fun main() {
         val strings = readln().trim().split(Regex("\\s+"))
         try {
             when (Commands.getCommand(strings[0])) {
-                Commands.PARK -> parkingService.parkCar(Car(strings[1], strings[2]))
-                Commands.LEAVE -> parkingService.leaveSpotNumber(strings[1].toInt())
                 Commands.CREATE -> parkingService.createNewParking(strings[1].toInt())
-                Commands.STATUS -> parkingService.printStatus()
                 Commands.EXIT -> exit = true
+                Commands.LEAVE -> parkingService.leaveSpotNumber(strings[1].toInt())
+                Commands.PARK -> parkingService.parkCar(Car(strings[1], strings[2]))
+                Commands.REG_BY_COLOR -> parkingService.getRegByColor(strings[1])
+                Commands.SPOT_BY_COLOR -> parkingService.getSpotByColor(strings[1])
+                Commands.SPOT_BY_REG -> parkingService.getSpotByReg(strings[1])
+                Commands.STATUS -> parkingService.printStatus()
             }
         } catch (e: RuntimeException) {
             println(e.message)

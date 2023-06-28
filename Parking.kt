@@ -33,4 +33,19 @@ class Parking() {
     fun getSpots(): List<Spot>? {
         return spots
     }
+
+    fun getAllCarsByColor(color: String): List<Car?>? {
+        if (spots == null) throw RuntimeException("Sorry, a parking lot has not been created.")
+        return spots?.filter { it.car?.color?.lowercase() == color.lowercase() }?.map { it.car }
+    }
+
+    fun getAllSpotsByColor(color: String): List<Spot?>? {
+        if (spots == null) throw RuntimeException("Sorry, a parking lot has not been created.")
+        return spots?.filter { it.car?.color?.lowercase() == color.lowercase() }
+    }
+
+    fun getAllSpotsByReg(reg: String): List<Spot?>? {
+        if (spots == null) throw RuntimeException("Sorry, a parking lot has not been created.")
+        return spots?.filter { it.car?.registrationNumber == reg }
+    }
 }
